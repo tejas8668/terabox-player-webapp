@@ -187,6 +187,24 @@
             document.querySelector('.video-player').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Function to extract URL parameter
+        function getUrlParameter(name) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Automatically play the video when the page loads
+        window.onload = function () {
+            const teraboxLink = getUrlParameter('url');
+            if (teraboxLink) {
+                playVideo(teraboxLink);
+            }
+        };
     </script>
 </head>
 <body>
