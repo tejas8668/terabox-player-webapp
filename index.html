@@ -34,7 +34,11 @@
                     <source src="${videoUrl}" type="application/x-mpegURL">
                 </video>
             `;
-            videojs(document.getElementById('video-player'));
+            const videoPlayer = videojs(document.getElementById('video-player'));
+            videoPlayer.on('error', function() {
+                console.error('Error loading video:', videoPlayer.error());
+                alert('Error loading video. Please try again.');
+            });
         }
 
         function loadVideoFromUrl() {
