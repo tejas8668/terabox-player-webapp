@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terabox Video Player and Downloader - Watch and Download videos without needing the Terabox App or Premium.">
+    <title>Terabox Video Player</title>
+    <link rel="icon" type="image/png" href="https://s2.teraboxcdn.com/common-static/favicon.ico">
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #2c2f33, #23272a);
+            color: #fff;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 70px 20px;
+            background: linear-gradient(135deg, #5865f2, #7289da);
+            clip-path: ellipse(110% 85% at center top);
+            position: relative;
+            z-index: 10;
+        }
+        header h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            font-weight: bold;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .video-input-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: -30px;
+        }
+
+        .video-input-box input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #7289da;
+            border-radius: 8px;
+            outline: none;
+            background-color: #2c2f33;
+            color: #fff;
+        }
+
+        .video-input-box button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #5865f2;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-input-box button:hover {
+            background-color: #7289da;
+        }
+
+        .video-player {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .video-player iframe {
+            border: none;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 700px;
+            height: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            margin-top: 40px;
+            color: #99aab5;
+            text-align: center;
+        }
+
+        .features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features ul li {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Footer Section */
+        footer {
+            background: linear-gradient(135deg, #5865f2, #23272a);
+            text-align: center;
+            padding: 20px;
+            color: #99aab5;
+            font-size: 0.9rem;
+            clip-path: ellipse(110% 95% at center bottom);
+        }
+
+        footer a {
+            color: #7289da;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dotted Background Effect */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#7289da 1px, transparent 1px);
+            background-size: 15px 15px;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .video-input-box {
+                flex-direction: column;
+            }
+
+            .video-input-box input {
+                width: 100%;
+            }
+
+            .video-input-box button {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        function playVideo() {
+            const input = document.getElementById('videoLink').value;
+            if (!input.trim()) {
+                alert('Please enter a valid link.');
+                return;
+            }
+
+            const iframeUrl = `https://www.terabox.tech/play.html?url=${encodeURIComponent(input)}`;
+            const player = document.getElementById('videoPlayer');
+            player.src = iframeUrl;
+
+            document.querySelector('.video-player').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="https://vectorseek.com/wp-content/uploads/2023/11/TeraBox-Logo-Vector.svg-.png" alt="Terabox Logo" style="width: 100px; margin-bottom: 20px;">
+        <h1>Terabox Video Player</h1>
+        <p>Play videos seamlessly. No App or Premium required.</p>
+    </header>
+    <main>
+        <div class="video-input-box">
+            <input type="text" id="videoLink" placeholder="Paste your Terabox video link here">
+            <button onclick="playVideo()">Play Video</button>
+        </div>
+        <div class="video-player">
+            <iframe id="videoPlayer" allowfullscreen scrolling="no"></iframe>
+        </div>
+        <div class="features">
+            <h3>Features</h3>
+            <ul>
+                <li>Skip Forward/Backward 10s</li>
+                <li>Volume Control</li>
+                <li>Quality Control (if available)</li>
+                <li>Speed Control up to 2x</li>
+                <li>Download Video</li>
+                <li>Play Video over Other Apps</li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Terabox Video Player. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="https://github.com/cu-sanjay">GitHub</a></p>
+    </footer>
+</body>
+</html>
