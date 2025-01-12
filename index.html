@@ -37,6 +37,7 @@
             const videoPlayer = videojs(document.getElementById('video-player'));
             videoPlayer.on('error', function() {
                 console.error('Error loading video:', videoPlayer.error());
+                console.log('Video URL:', videoUrl);
                 alert('Error loading video. Please try again.');
             });
         }
@@ -47,6 +48,7 @@
             if (url) {
                 const videoId = extractVideoId(url);
                 const videoUrl = `https://jolly-union-9cc3.shraj.workers.dev/?id=${videoId}`;
+                console.log('Video URL:', videoUrl);
                 loadVideo(videoUrl);
             }
         }
